@@ -1,7 +1,7 @@
 # action.yml ────────────────────────────────────────────────────────────────
 name: "RSync Artifacts"
 description: >
-  Backup or restore multiple folders to "/<base | $HOME/.artifact>/<target>/<folder>/".
+  Backup or restore multiple folders to "/<base | $HOME/.artifacts>/<target>/<folder>/".
 
 author: "Daniel Pfisterer <info@daniel-pfisterer.de>"
 
@@ -16,7 +16,7 @@ inputs:
     description: "Comma-separated list of folders"
     required: true
   base:
-    description: "Root artifact directory (defaults to $HOME/.artifact)"
+    description: "Root artifact directory (defaults to $HOME/.artifacts)"
     required: false
   delete:
     description: "If 'true', add --delete (push only)"
