@@ -1,0 +1,58 @@
+# action.yml ────────────────────────────────────────────────────────────────
+name: "RSync Artifacts (push / pull)"
+description: >
+  Backup or restore multiple folders to "/<base | $HOME/.artifact>/<target>/<folder>/"".
+
+author: "Daniel Pfisterer <info@daniel-pfisterer.de>"
+
+inputs:
+  mode:
+    description: "'push' or 'pull'"
+    required: true
+  target:
+    description: "Target directory under the base path"
+    required: true
+  source:
+    description: "Comma-separated list of folders"
+    required: true
+  base:
+    description: "Root artifact directory (defaults to $HOME/.artifact)"
+    required: false
+  delete:
+    description: "If 'true', add --delete (push only)"
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - id: run-script
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        # Ensure the script is executable
+        chmod +x "./src/artifacts.sh"
+
+        # Build argument list
+        ARGS=(
+          "${{ inputs.mode }}"
+          --target="${{ inputs.target }}"
+          --source="${{ inputs.source }}"
+        )
+
+        # Optional flags
+        if [[ -n "${{ inputs.base }}" ]]; then
+          ARGS+=(--base="${{ inputs.base }}")
+        fi
+
+        if [[ "${{ inputs.delete }}" == "true" ]]; then
+          ARGS+=(--delete)
+        fi
+
+        # Execute
+        "./src/artifacts.sh" "${ARGS[@]}"
+        
+branding:
+  icon: "upload-cloud"
+  color: "blue"
