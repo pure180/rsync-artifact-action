@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/artifacts-sync
+      - uses: pure180/rsync-artifact-action@v1
         with:
           mode: push
           target: my-app
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/artifacts-sync
+      - uses: pure180/rsync-artifact-action@v1
         with:
           mode: pull
           target: my-app
