@@ -32,7 +32,7 @@ runs:
         set -euo pipefail
 
         # Ensure the script is executable
-        chmod +x "./src/artifacts.sh"
+        chmod +x "${{ github.action_path }}/src/artifacts.sh"
 
         # Build argument list
         ARGS=(
@@ -51,7 +51,7 @@ runs:
         fi
 
         # Execute
-        "./src/artifacts.sh" "${ARGS[@]}"
+        "${{ github.action_path }}/src/artifacts.sh" "${ARGS[@]}"
         
 branding:
   icon: "upload-cloud"
