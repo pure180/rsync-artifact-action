@@ -1,4 +1,4 @@
-# Artifacts RSync GitHub Action
+# RSync artifacts in GitHub actions
 
 A lightweight composite-run action that **pushes** or **pulls** one or more folders between your workflow checkout and a persistent artifact directory on same server that hosts your self-hosted GitHub runner.:
 
